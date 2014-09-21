@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="AroundMe.FrontPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:c4fToolkit="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/metroxp.png"/>
+        </Grid.Background>
+        <!--Pivot Control-->
+        <phone:Pivot Title="FLOCKR" >
+            <!--Pivot item one-->
+            <phone:PivotItem Header="popular tags">
+                <ScrollViewer Margin="0,0,0,20">
+                    <toolkit:WrapPanel HorizontalAlignment="Center">
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="nature" Margin="15" Source="Images/nature.jpg" Title="nature" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="art" Margin="15" Source="Images/art.jpg" Title="art" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="beach" Margin="15" Source="Images/beach.jpg" Title="beach" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="graffiti" Margin="15" Source="Images/graffiti.jpg" Title="graffiti" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="fashion" Margin="15" Source="Images/fashion.jpg" Title="fashion" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="flowers" Margin="15" Source="Images/flowers.jpg" Title="flowers" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="party" Margin="15" Source="Images/party.jpg" Title="party" Message="Flickr Images" />
+                        <toolkit:HubTile Tap="Tile_Tap" x:Name="music" Margin="15" Source="Images/music.jpg" Title="music" Message="Flickr Images" />
+                    </toolkit:WrapPanel>
+                </ScrollViewer>
+            </phone:PivotItem>
+
+            <!--Pivot item two-->
+            <phone:PivotItem Header="custom tags">
+                <Grid>
+                    <StackPanel Margin="10" Grid.Row="1">
+                        <TextBlock Margin="10,0,0,0"
+                    Foreground="{StaticResource PhoneSubtleBrush}" 
+                    Text="Search Tag" />
+                        <TextBox 
+                    Name="SearchTopic" 
+                    Margin="0, 0,0,0" />
+                        <Button Content="Search" Click="Button_Click"  />          
+                        <TextBlock Margin="10,0,10,0" Text="You can search without tags by clicking search without any tag in the search box." TextWrapping="Wrap" />
+                        <ad:InneractiveAd Margin="0,20,0,0"
+    xmlns:ad="clr-namespace:Inneractive.Ad;assembly=Inneractive.Ad"
+    AppID="SuperLazy_FLOCKR_WP"
+    AdType="IaAdType_Banner"
+    ReloadTime="60"
+    Name="InneractiveXamlAd"
+/>
+
+
+                    </StackPanel>
+                </Grid>
+            </phone:PivotItem>
+
+            <phone:PivotItem Header="location">
+                <StackPanel>
+                    <toolkit:ToggleSwitch Click="locSearch_Click" Name="locSearch" Header="Location Search"></toolkit:ToggleSwitch>
+                    <TextBlock Text="FLOCKR needs to be restarted to take effect of location services changes." TextWrapping="Wrap" Margin="10,-20,0,0"/>
+                    <maps:Map Margin="10,10,10,10" Height="400" Width="Auto" Name="AroundMeMap" Visibility="Visible" Loaded="AroundMeMap_Loaded" />
+                </StackPanel>
+            </phone:PivotItem>
+        </phone:Pivot>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized" Opacity="0.6">
+            
+            <shell:ApplicationBar.MenuItems>                
+                <shell:ApplicationBarMenuItem Text="about" Click="ApplicationBarMenuItem_Click"/>
+                <shell:ApplicationBarMenuItem Text="privacy policy" Click="ApplicationBarMenuItem_Click_1"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
